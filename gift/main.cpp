@@ -99,9 +99,10 @@ int main()
             avgass+=assignments[i];
             avgend+=endsemester[i];
         }
-        cout << "Average mid sem performance was "+  avgmid/randomNumbers.size()-1<< endl;
-        cout << "Average assignment performance was "+ avgass/randomNumbers.size()-1<< endl;
-        cout << "Average end sem performance was "+ avgend/randomNumbers.size()-1<< endl;
+        cout<<avgmid/5<<endl;
+        cout << "Average mid sem performance was " + to_string(avgmid/5) << endl;
+        cout << "Average assignment performance was "+ to_string(avgass/5)<< endl;
+        cout << "Average end sem performance was "+ to_string(avgend/5)<< endl;
     }else if(option==3){
         string findname;
         int foundIndex;
