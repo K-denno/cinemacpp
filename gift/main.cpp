@@ -120,12 +120,16 @@ int main()
                 cin>>endsem;
                 cout << "Enter new project mark for " + to_string(projects[i]) +" in "+ courses[i]+ " >> ";
                 cin>>proj;
+                if((mid<100) && (ass<100) && (endsem<100) && (proj<100)){
                 names[i]=newname;
                 midsemester[i]=mid;
                 assignments[i]=ass;
                 endsemester[i]=endsem;
                 projects[i]=proj;
                 cout<<"Marks succesfully editted"<<endl;
+                }else{
+                    cout << "All marks should be below 100"<<endl;
+                }
 
             }else{
                 cout << " Invalid entry " << endl;
