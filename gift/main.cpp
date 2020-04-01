@@ -84,13 +84,14 @@ int main()
         };
     }else if(option==4){
         vector<int> randomNumbers;
-        for(int i=0;i<=1;i++){
+        for(int i=0;i<=5;i++){
             int result=1 + (rand() % names.size());
             randomNumbers.push_back(result);
         };
         int avgmid,avgass,avgend;
+        cout << "N0.**********NAME**********COURSE**********MID SEM**********ASSIGNMENT**********END SEM**********PROJECTS"<<endl;
         for(int i=0;i<randomNumbers.size()-1;i++){
-            cout << "N0.**********NAME**********COURSE**********MID SEM**********ASSIGNMENT**********END SEM"<<endl;
+
             cout<<"\n"<<endl;
             cout<<"["+ to_string(i) + "]          " + names[randomNumbers[i]] +"               "+ courses[randomNumbers[i]] + "               "+to_string(midsemester[randomNumbers[i]])  + "               "+ to_string(assignments[randomNumbers[i]])+ "               "+ to_string(endsemester[randomNumbers[i]])+ "               "+ to_string(projects[randomNumbers[i]])    <<endl;
             cout<<"\n"<<endl;
