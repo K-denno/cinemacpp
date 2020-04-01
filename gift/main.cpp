@@ -7,16 +7,16 @@ using namespace std;
 class Student {        // The class
   public:          // Access specifier
     string name;  // Attribute
-    string gender;
     string course;
-    int mark;  // Attribute
-    int age;      // Attribute
-    Student(string name,string gender,int age,string course,int marks) { // Constructor with parameters
-      age=age;
-      gender=gender;
-      name=name;
-      course=course;
-      mark=marks;
+    int midsem;
+    int endsem;  // Attribute
+    int assignment;      // Attribute
+    Student(string name,string course,int midsem,int endsem,int assignment) { // Constructor with parameters
+     name=name;
+     course=course;
+     midsem=midsem;
+     endsem=endsem;
+     assignment=assignment;
     }
 
 };
@@ -24,11 +24,11 @@ class Student {        // The class
 
 int main()
 {
-    vector<int> ages;
     vector<string> names;
-    vector<int> marks;
-    vector<string> genders;
     vector<string> courses;
+    vector<int> midsemester;
+    vector<int> assignments;
+    vector<int> endsemester;
     while(true){
     cout <<"[+]***************************Heeeeey Welcome******************************[+]"<<endl;
     cout<< "Pick an option"<<endl;
@@ -42,66 +42,73 @@ int main()
     cin >> option;
     if(option==1){
         string nam,course;
-        int ag,grade;
+        int mid,ass,endsem;
         string gendr;
-        cout<< "Add New User >> "<<endl;
+        cout<< "Adding New Student "<<endl;
         cout<< "Enter name >> ";
         cin>>nam;
-        cout<< "Enter gender >> ";
-        cin>>gendr;
-        cout<< "Enter age >> ";
-        cin>>ag;
         cout<< "Enter course >> ";
         cin>>course;
-        cout<< "Enter mark >> ";
-        cin>>grade;
-        Student student(nam,gendr,ag,course,grade);
-        ages.push_back(ag);
+        cout<< "Enter mid sem mark >> ";
+        cin>>mid;
+        cout<< "Enter assignment mark >> ";
+        cin>>ass;
+        cout<< "Enter end sem mark >> ";
+        cin>>endsem;
+        Student student(nam,course,mid,endsem,ass);
         names.push_back(nam);
-        genders.push_back(gendr);
         courses.push_back(course);
-        marks.push_back(grade);
+        midsemester.push_back(mid);
+        endsemester.push_back(endsem);
+        assignments.push_back(ass);
     }else if(option==2){
         cout << "\n \n Here's a list of students"<<endl;
-        cout << "N0.**********NAME**********AGE**********Gender**********COURSE**********MARK"<<endl;
+        cout << "N0.**********NAME**********COURSE**********MID SEM**********ASSIGNMENT**********END SEM"<<endl;
         for(int i=0;i<names.size();i++){
         cout<<"\n"<<endl;
-        cout<<"["+ to_string(i) + "]          "+ names[i] +"          " + to_string(ages[i] )+"               "+ genders[i] + "               "+ courses[i] + "               "+ to_string(marks[i])  <<endl;
+        cout<<"["+ to_string(i) + "]          "+ names[i] +"          " +courses[i] +"              "+ to_string(midsemester[i] ) + "               "+ to_string(assignments[i]) + "               "+ to_string(endsemester[i])  <<endl;
         cout<<"\n"<<endl;
         };
     }else if(option==4){
         vector<int> randomNumbers;
-        for(int i=0;i<5;i++){
+        for(int i=0;i<=1;i++){
             int result=1 + (rand() % names.size());
             randomNumbers.push_back(result);
         };
-        int avg;
+        int avgmid,avgass,avgend;
         for(int i=0;i<randomNumbers.size()-1;i++){
+            cout << "N0.**********NAME**********COURSE**********MID SEM**********ASSIGNMENT**********END SEM"<<endl;
             cout<<"\n"<<endl;
-            cout<<"["+ to_string(i) + "]          " + to_string(ages[randomNumbers[i]])+"               "+ genders[randomNumbers[i]] + "               "+ courses[randomNumbers[i]] + "               "+ to_string(marks[randomNumbers[i]])  <<endl;
+            cout<<"["+ to_string(i) + "]          " + names[randomNumbers[i]] +"               "+ courses[randomNumbers[i]] + "               "+to_string(midsemester[randomNumbers[i]])  + "               "+ to_string(assignments[randomNumbers[i]])+ "               "+ to_string(endsemester[randomNumbers[i]])    <<endl;
             cout<<"\n"<<endl;
-            avg+=marks[i];
+            avgmid+=midsemester[i];
+            avgass+=assignments[i];
+            avgend+=endsemester[i];
         }
-
-        int average = avg/randomNumbers.size()-1;
-        cout << "Average performance was "+ average<< endl;
+        cout << "Average mid sem performance was "+  avgmid/randomNumbers.size()-1<< endl;
+        cout << "Average assignment performance was "+ avgass/randomNumbers.size()-1<< endl;
+        cout << "Average end sem performance was "+ avgend/randomNumbers.size()-1<< endl;
     }else if(option==3){
         string findname;
-
         int foundIndex;
         cout << "Enter name of student>> ";
         cin>> findname;
         for (int i=0;i<names.size();i++){
             if(findname==names[i]){
                 string newname;
-                int mark;
+                int mid,endsem,ass;
                 cout << "Enter new name for " + names[i]+" >> ";
                 cin>>newname;
-                cout << "Enter new marks for " + to_string(marks[i]) +" in "+ courses[i]+ " >> ";
-                cin>>mark;
+                cout << "Enter new mid-sem for " + to_string(midsemester[i]) +" in "+ courses[i]+ " >> ";
+                cin>>mid;
+                cout << "Enter new assignment for " + to_string(assignments[i]) +" in "+ courses[i]+ " >> ";
+                cin>>ass;
+                cout << "Enter new end sem for " + to_string(endsemester[i]) +" in "+ courses[i]+ " >> ";
+                cin>>endsem;
                 names[i]=newname;
-                marks[i]=mark;
-
+                midsemester[i]=mid;
+                assignments[i]=ass;
+                endsemester[i]=endsem;
                 cout<<"Marks succesfully editted"<<endl;
 
             }else{
