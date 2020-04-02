@@ -76,10 +76,10 @@ int main()
 
     }else if(option==2){
         cout << "\n \n Here's a list of students"<<endl;
-        cout << "N0.**********NAME**********COURSE**********MID SEM**********ASSIGNMENT**********END SEM**********PROJECT"<<endl;
+        cout << "N0.**********NAME**********COURSE**********MID SEM**********ASSIGNMENT**********END SEM**********PROJECT**********MARKS"<<endl;
         for(int i=0;i<names.size();i++){
         cout<<"\n"<<endl;
-        cout<<"["+ to_string(i) + "]          "+ names[i] +"          " +courses[i] +"              "+ to_string(midsemester[i] ) + "               "+ to_string(assignments[i]) + "               "+ to_string(endsemester[i])+"               "+ to_string(projects[i])    <<endl;
+        cout<<"["+ to_string(i) + "]          "+ names[i] +"          " +courses[i] +"              "+ to_string(midsemester[i] ) + "               "+ to_string(assignments[i]) + "               "+ to_string(endsemester[i])+"               "+ to_string(projects[i])+"               "+ to_string(((endsemester[i]+assignments[i]+midsemester[i]+projects[i])/4)) +"%"<<endl;
         cout<<"\n"<<endl;
         };
     }else if(option==4){
