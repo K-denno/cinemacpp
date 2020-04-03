@@ -20,10 +20,6 @@ public:
             amount=5000;
         }else if(marathon=="full"){
             amount=10000;
-        }else{
-            cout<<"Error:Defaulting to full marathon"<<endl;
-            type="full";
-            amount=10000;
         }
 
     }
@@ -83,7 +79,7 @@ int main()
             cout<< "Enter Marathon -->> ";
             cin >> marathon;
             try{
-                if((seatNumber<=20)&&(seats[seatNumber-1].occupied==false)){
+                if((seatNumber<=20)&&(seats[seatNumber-1].occupied==false)&&((marathon=="half")||(marathon=="full"))){
                     Customer customer(seatNumber,name,marathon);
                     totalCash+=customer.amount;
                     customers.push_back(customer);
