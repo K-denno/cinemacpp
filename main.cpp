@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -14,11 +15,13 @@ public:
     Customer(int seat,string name,string marathon){
         seatNumber=seat;
         userName=name;
+        type=marathon;
         if(marathon=="half"){
             amount=5000;
         }else{
             amount=10000;
         }
+
     }
 };
 class Seat{
@@ -54,7 +57,7 @@ int main()
 
     cout<<"WELCOME TO IMAX"<<endl;
     while(true){
-        int option;
+         int option;
         cout<< "Choose one of the following: "<<endl;
         cout<< "\t 1) Book Seat"<<endl;
         cout<< "\t 2) View Empty Seats"<<endl;
@@ -66,30 +69,26 @@ int main()
         cout<<"Input option -->> ";
         cin>>option;
         if(option==1){
-            int seatNumber;
+            int seatNumber,possible;
             string name,marathon;
             cout <<"\t \t \t Let's book a seat, shall we "<<endl;
             cout << "Enter name -->> ";
             cin >>name;
             cout << "Enter seat number -->> ";
             cin>>seatNumber;
-            if(customers.size()!=0){
-                for(int i=0;i<=customers.size();i++){
-                if(seatNumber-1==customers[i].seatNumber){
-                    cout<<"Failed:Cant book seat"<<endl;
-                    cout << "Enter seat number -->> ";
-                    cin>>seatNumber;
-                }
-            }
-            }
             cout<< "Enter Marathon -->> ";
             cin >> marathon;
-
-            Customer customer(seatNumber,name,marathon);
-            totalCash+=customer.amount;
-            customers.push_back(customer);
-            seats[seatNumber-1].occupied=true;
-            cout<<"\t\t success:Seat Booked"<<endl;
+            try{
+                if((seatNumber<=20)&&(seats[seatNumber-1].occupied==false)){
+                    Customer customer(seatNumber,name,marathon);
+                    totalCash+=customer.amount;
+                    customers.push_back(customer);
+                    seats[seatNumber-1].occupied=true;
+                    cout<<"\t\t success:Seat Booked"<<endl;
+                }else{
+                    cout<<"Failed:Cant book this seat"<<endl;
+                }
+            }catch(exception){}
 
         }else if(option==2){
             cout<<"Available seats"<<endl;
@@ -120,9 +119,13 @@ int main()
                     customers[i].type = marathon;
                     if(marathon=="half"){
                         totalCash-=5000;
+                        customers[i].type="half";
+                        customers[i].amount=5000;
                         cout<<"\t\t success:marathon switched to half marathon"<<endl;
                     }else{
                         totalCash+=5000;
+                        customers[i].type="full";
+                        customers[i].amount=10000;
                         cout<<"\t\t success:marathon switched to full marathon"<<endl;
                     }
                 }else{
@@ -150,8 +153,8 @@ int main()
 
         }else if(option==6){
             cout<<"name\t\tSeatNo.\t\tMarathon\t\tAmount"<<endl;
-            for(int i=0;i<=customers.size();i++){
-                cout<<customers[i].userName+"\t\t"+ to_string(customers[i].seatNumber)+"\t\t"+customers[i].type+"\t\t"+to_string(customers[i].amount)<<endl;
+            for(int i=0;i<customers.size();i++){
+                cout<<customers[i].userName+"\t\t"+ to_string(customers[i].seatNumber)+"\t\t"+customers[i].type+"\t\t\t\t"+to_string(customers[i].amount)<<endl;
             }
         }
 
