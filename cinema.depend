@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1585902765 source:/root/Documents/cpp/gift/cinema/main.cpp
+	<iostream>
+	<vector>
+	<string>
+
