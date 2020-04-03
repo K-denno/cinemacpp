@@ -18,7 +18,11 @@ public:
         type=marathon;
         if(marathon=="half"){
             amount=5000;
+        }else if(marathon=="full"){
+            amount=10000;
         }else{
+            cout<<"Error:Defaulting to full marathon"<<endl;
+            type="full";
             amount=10000;
         }
 
@@ -86,7 +90,7 @@ int main()
                     seats[seatNumber-1].occupied=true;
                     cout<<"\t\t success:Seat Booked"<<endl;
                 }else{
-                    cout<<"Failed:Cant book this seat"<<endl;
+                    cout<<"\t\tFailed:Cant book this seat"<<endl;
                 }
             }catch(exception){}
 
