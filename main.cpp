@@ -35,9 +35,9 @@ public:
         string checkseat(int seat){
         //cinema has only 20 seats....This makes sure seatNumber doesn't exceed 20
             if(seat>20){
-                return "over";
+                return "Only twenty seats available";
             }else{
-                return "under";
+                return "Seat booking in progress";
             }
         }
 
@@ -47,7 +47,7 @@ int main()
     vector<Seat> seats;
     int totalCash=0;
     //prepopulate seats
-    for(int i=0;i<=19;i++){
+    for(int i=1;i<=20;i++){
         Seat seat(i,true);
         seats.push_back(seat);
     };
@@ -61,7 +61,7 @@ int main()
         cout<< "\t 3) View Total Cash Made"<<endl;
         cout<< "\t 4) Change Marathon"<<endl;
         cout<< "\t 5) Make Seat Available"<<endl;
-        cout<<seats.size();
+        cout<< "\t 6) View Booked Seats"<<endl;
         //get user input for options
         cout<<"Input option -->> ";
         cin>>option;
@@ -73,22 +73,32 @@ int main()
             cin >>name;
             cout << "Enter seat number -->> ";
             cin>>seatNumber;
+            if(customers.size()!=0){
+                for(int i=0;i<=customers.size();i++){
+                if(seatNumber-1==customers[i].seatNumber){
+                    cout<<"Failed:Cant book seat"<<endl;
+                    cout << "Enter seat number -->> ";
+                    cin>>seatNumber;
+                }
+            }
+            }
             cout<< "Enter Marathon -->> ";
             cin >> marathon;
 
             Customer customer(seatNumber,name,marathon);
             totalCash+=customer.amount;
             customers.push_back(customer);
-            seats[seatNumber].occupied=true;
-            cout<<to_string(seats[seatNumber].number)<<endl;
+            seats[seatNumber-1].occupied=true;
             cout<<"\t\t success:Seat Booked"<<endl;
 
         }else if(option==2){
             cout<<"Available seats"<<endl;
             cout<<"SeatNo.\t\t\t Occupied"<<endl;
-            for(int i=0;i<=seats.size();i++){
+            for(int i=0;i<=seats.size()-1;i++){
                 if(seats[i].occupied==false){
-                    cout <<to_string(seats[i].number)+ "\t\t\t\t" +to_string(seats[i].occupied)<<endl;
+                    cout <<to_string(seats[i].number)+ "\t\t\tfalse"<<endl;
+                }else{
+                    cout <<to_string(seats[i].number)+ "\t\t\ttrue"<<endl;
                 }
             }
 
@@ -138,8 +148,11 @@ int main()
                 }
             }
 
-        }else{
-            cout<<"\t\t Invalid option"<<endl;
+        }else if(option==6){
+            cout<<"name\t\tSeatNo.\t\tMarathon\t\tAmount"<<endl;
+            for(int i=0;i<=customers.size();i++){
+                cout<<customers[i].userName+"\t\t"+ to_string(customers[i].seatNumber)+"\t\t"+customers[i].type+"\t\t"+to_string(customers[i].amount)<<endl;
+            }
         }
 
 
