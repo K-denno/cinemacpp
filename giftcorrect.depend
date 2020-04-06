@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1586090939 source:/root/Documents/cpp/gift/giftcorrect/main.cpp
+	<iostream>
+	<vector>
+	<string>
+	<algorithm>
+
